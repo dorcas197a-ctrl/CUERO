@@ -1,0 +1,204 @@
+:root {
+    --bg: #030303;
+    --card-bg: #0d0d0d;
+    --gold: #d4af37;
+    --gold-bright: #f4d03f;
+    --neon: #00e5ff;
+    --white: #f5f5f5;
+    --glass: rgba(255, 255, 255, 0.03);
+    --border: rgba(255, 255, 255, 0.1);
+    --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--white);
+    font-family: 'Raleway', sans-serif;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+header {
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(12px);
+    padding: 15px 8%;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 1px solid var(--border);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.6rem;
+    color: var(--gold);
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    text-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li { margin-left: 25px; }
+
+.nav-links a {
+    text-decoration: none;
+    color: rgba(255,255,255,0.7);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    transition: var(--transition);
+}
+
+.nav-links a:hover { color: var(--neon); }
+
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), 
+                url('4 DOLARES.png') no-repeat center center/cover;
+    position: relative;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at center, transparent 0%, var(--bg) 95%);
+}
+
+.hero h1 {
+    position: relative;
+    z-index: 1;
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    letter-spacing: clamp(10px, 2vw, 20px);
+    background: linear-gradient(135deg, var(--gold) 0%, #fff 50%, var(--gold) 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 5s linear infinite;
+}
+
+@keyframes shine {
+    to { background-position: 200% center; }
+}
+
+.products { padding: 120px 8%; max-width: 1600px; margin: 0 auto; }
+
+.section-title {
+    font-family: 'Orbitron', sans-serif;
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 80px;
+    color: var(--gold);
+    letter-spacing: 8px;
+}
+
+.grid-productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 50px;
+}
+
+.card {
+    background: var(--card-bg);
+    border-radius: 2px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: var(--transition);
+}
+
+.card:hover {
+    transform: translateY(-15px);
+    border-color: var(--gold);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+
+.card img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.card:hover img { transform: scale(1.08); }
+
+.card-info { padding: 30px 20px; text-align: center; }
+
+.price {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.4rem;
+    color: var(--neon);
+    margin-bottom: 20px;
+    display: block;
+}
+
+.btn-buy {
+    width: 100%;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 12px;
+    letter-spacing: 3px;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.btn-buy:hover { background: var(--gold); color: #000; }
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0; top: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.95);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.modal-content {
+    max-width: 90%;
+    max-height: 80%;
+    border: 1px solid var(--gold);
+    animation: zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn { from {transform: scale(0.7);} to {transform: scale(1);} }
+
+.close {
+    position: absolute;
+    top: 20px; right: 35px;
+    color: var(--white);
+    font-size: 40px;
+    cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav-links { display: none; }
+    .grid-productos { grid-template-columns: 1fr; }
+}
+
+footer { padding: 50px; text-align: center; color: #444; }
